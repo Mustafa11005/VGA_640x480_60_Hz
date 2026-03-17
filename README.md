@@ -166,7 +166,3 @@ If you use a stricter external linter (for example Verilator with extra warning 
 | `rgb` | output | `BPP` | Pixel color data |
 
 ---
-
-## License
-
-MIT License — free to use and modify for any purpose.
