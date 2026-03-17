@@ -113,14 +113,15 @@ vsim -do run.do
 The testbench runs **2 full VGA frames**, then prints:
 
 ```
-[TB][PASS] VGA self-check completed with no mismatches.
+[PASS] VGA testing completed with no mismatches.
 ```
 
 or on failure:
 
 ```
-[TB][FAIL] VGA self-check found N mismatches.
-[TB][ERROR] t=... h_sync mismatch: got=X exp=X x=... y=...
+[ERROR][%0t] ...
+...
+[FAIL] VGA testing found # mismatches.
 ```
 
 ### Self-checks performed each clock cycle
