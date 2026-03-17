@@ -19,7 +19,7 @@ module vga_640x480_tb ();
 
     localparam H_TOTAL = H_ACTIVE + H_FRONT_PORCH + H_SYNC_PORCH + H_BACK_PORCH;
     localparam V_TOTAL = V_ACTIVE + V_FRONT_PORCH + V_SYNC_PORCH + V_BACK_PORCH;
-    localparam SIM_CYCLES = (H_TOTAL * V_TOTAL * 2);
+    localparam SIM_CYCLES = (H_TOTAL * V_TOTAL * 2) + 1;
 
     logic clk;
     logic rstn;
@@ -125,7 +125,7 @@ module vga_640x480_tb ();
         error_count = 0;
 
         rstn = 1'b0;
-        repeat(5) @(negedge clk);
+        repeat(5) @(posedge clk);
 
         rstn = 1'b1;
         repeat(SIM_CYCLES) @(posedge clk);
