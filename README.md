@@ -133,6 +133,27 @@ or on failure:
 
 ---
 
+## Lint And Quality
+
+- RTL and testbench are lint-clean in the current workspace/editor diagnostics (no active errors reported).
+- Numeric literal width warnings were resolved (no redundant-digit constants in active modules).
+- Testbench is self-checking and reports explicit PASS/FAIL with mismatch context.
+
+Note:
+If you use a stricter external linter (for example Verilator with extra warning flags), treat that report as the source of truth.
+
+---
+
+## Current Limitations
+
+- Pixel clock generation is integer-divider based. It generates an exact 25 MHz only for supported input clocks (>= 50 MHz and multiples of 50 MHz).
+- The design does not implement a PLL/MMCM-based 25.175 MHz clock, so exact VESA pixel frequency is approximated by 25 MHz.
+- Image memory content is loaded with `$readmemh` for simulation; for deterministic FPGA bitstream initialization, use vendor memory IP/primitive (for example `altsyncram`, `xpm_memory`, or block memory generator) with an explicit init file included in the project flow.
+- Framebuffer addressing is fixed to 640x480 linear layout (`addr = y * 640 + x`) in image-memory mode.
+- RGB format is treated as packed `BPP` bits; any custom color encoding/bitfield mapping must be handled by memory data preparation.
+
+---
+
 ## Outputs
 
 | Port | Direction | Width | Description |
